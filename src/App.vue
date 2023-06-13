@@ -14,9 +14,7 @@ function addTask() {
 
   <button @click="addTask" :key="newTask.id">Add task</button>
 
-  <li v-for="task in tasks">
-    {{ task.text }}
-  </li>
+  <li v-for="task in tasks">{{ task.text }} <button>X</button></li>
 </template>
 
 <style scoped></style>
