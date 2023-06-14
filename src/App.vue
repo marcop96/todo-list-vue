@@ -20,9 +20,9 @@ function validateAddtask() {
 </script>
 
 <template>
-  <div class="div">
+  <div id="input-container" class="flex justify-center h-100 pt-10">
     <input
-      class="border-black border-2 outline-red-500 rounded-full"
+      class="border-black border-2 outline-red-500 pr-2 rounded-full"
       v-model="newTask"
     />
     <button
@@ -33,8 +33,8 @@ function validateAddtask() {
       Add task
     </button>
   </div>
-  <div class="w-full">
-    <li v-for="task in tasks" :key="task.id">
+  <div class="grid justify-center pt-20">
+    <li class="w-full" v-for="task in tasks" :key="task.id">
       <input type="checkbox" v-model="task.done" />
       <span :class="{ done: task.done }">{{ task.text }}</span>
       <button class="border-2 border-black" @click="deleteTask(task)">X</button>
