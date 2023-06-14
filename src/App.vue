@@ -26,7 +26,7 @@ function validateAddtask() {
       v-model="newTask"
     />
     <button
-      class="bg-green-600 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full"
+      class="bg-green-600 hove r:bg-green-900 text-white font-bold py-2 px-4 rounded-full"
       @click="validateAddtask"
       :key="newTask.id"
     >
@@ -37,7 +37,9 @@ function validateAddtask() {
     <li class="w-full" v-for="task in tasks" :key="task.id">
       <input type="checkbox" v-model="task.done" />
       <span :class="{ done: task.done }">{{ task.text }}</span>
-      <button class="border-2 border-black" @click="deleteTask(task)">X</button>
+      <button class="border-2 border-black pl-7" @click="deleteTask(task)">
+        X
+      </button>
     </li>
   </div>
 </template>
