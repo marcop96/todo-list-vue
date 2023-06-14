@@ -24,10 +24,15 @@ function validateAddtask() {
 
   <button @click="validateAddtask" :key="newTask.id">Add task</button>
 
-  <li v-for="task in tasks">
-    {{ task.text }}
+  <li v-for="task in tasks" :key="task.id">
+    <input type="checkbox" v-model="task.done" />
+    <span :class="{ done: task.done }">{{ task.text }}</span>
     <button @click="deleteTask(task)">X</button>
   </li>
 </template>
 
-<style scoped></style>
+<style scoped>
+.done {
+  text-decoration: line-through;
+}
+</style>
