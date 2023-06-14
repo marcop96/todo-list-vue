@@ -33,11 +33,15 @@ function validateAddtask() {
       Add task
     </button>
   </div>
-  <div class="grid justify-center pt-20">
-    <li class="w-full" v-for="task in tasks" :key="task.id">
+  <div class="pt-20 w-screen h-10">
+    <li
+      class="mx-auto mb-5 block list-none bg-green-900 h-10 w-1/2"
+      v-for="task in tasks"
+      :key="task.id"
+    >
       <input type="checkbox" v-model="task.done" />
       <span :class="{ done: task.done }">{{ task.text }}</span>
-      <button class="border-2 border-black pl-7" @click="deleteTask(task)">
+      <button class="border-2 border-black ml-7" @click="deleteTask(task)">
         X
       </button>
     </li>
