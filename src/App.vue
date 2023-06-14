@@ -20,10 +20,8 @@ function validateAddtask() {
 </script>
 
 <template>
-  <input v-model="newTask" />
-
+  <input v-model="newTask" :class="error" />
   <button @click="validateAddtask" :key="newTask.id">Add task</button>
-
   <li v-for="task in tasks" :key="task.id">
     <input type="checkbox" v-model="task.done" />
     <span :class="{ done: task.done }">{{ task.text }}</span>
