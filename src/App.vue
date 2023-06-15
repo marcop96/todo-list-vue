@@ -3,7 +3,6 @@ import { ref, watch } from "vue";
 const id = ref(0);
 const newTask = ref("");
 const tasks = ref([]);
-
 const hasError = ref(false);
 
 function addTask() {
@@ -26,6 +25,7 @@ function validateAddtask() {
     hasError.value = false;
   }
 }
+
 watch(newTask, (value) => {
   //value = newTask
   if (value != "") {
@@ -53,39 +53,38 @@ function editTask(task) {
         Add task
       </button>
     </div>
-
-    <div
-      id="main"
-      class="flex flex-col justify-center items-center pt-20 w-screen h-full"
-    >
-      <div id="list-container" class="mx-auto space-y-5 list-none w-1/2">
-        <li
-          class="bg-green-900 flex justify-center items-center"
-          v-for="task in tasks"
-          :key="task.id"
+  </div>
+  <div
+    id="main"
+    class="flex flex-col justify-center items-center pt-20 w-screen h-full"
+  >
+    <div id="list-container" class="mx-auto space-y-5 list-none w-1/2">
+      <li
+        class="bg-green-900 flex justify-center items-center"
+        v-for="task in tasks"
+        :key="task.id"
+      >
+        <input type="checkbox" v-model="task.done" />
+        <span
+          class="flex-grow text-center text-white"
+          contenteditable="false"
+          :class="{ done: task.done }"
         >
-          <input type="checkbox" v-model="task.done" />
-          <span
-            class="flex-grow text-center text-white"
-            contenteditable="false"
-            :class="{ done: task.done }"
-          >
-            {{ task.text }}
-          </span>
-          <button
-            class="border-2 border-white ml-7 mr-2 text-white"
-            @click="deleteTask(task.id)"
-          >
-            X
-          </button>
-          <button
-            class="text-white border-2 border-white"
-            @click="editTask(task.text)"
-          >
-            EDIT
-          </button>
-        </li>
-      </div>
+          {{ task.text }}
+        </span>
+        <button
+          class="border-2 border-white ml-7 mr-2 text-white"
+          @click="deleteTask(task.id)"
+        >
+          X
+        </button>
+        <button
+          class="text-white border-2 border-white"
+          @click="editTask(task.text)"
+        >
+          EDIT
+        </button>
+      </li>
     </div>
   </div>
 </template>
