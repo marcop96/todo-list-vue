@@ -64,7 +64,12 @@ function signalRecieved() {
     class="flex flex-col justify-center items-center pt-20 w-screen h-full"
   >
     <div id="list-container" class="mx-auto space-y-5 list-none w-1/2">
-      <TaskElement :task="task" v-for="task in tasks" @delete="deleteTask" />
+      <TaskElement
+        :task="task"
+        v-for="task in tasks"
+        @delete="deleteTask"
+        @edit="editTask"
+      />
       <!-- <li
         class="bg-green-900 flex justify-center items-center"
         v-for="task in tasks"

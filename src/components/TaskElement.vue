@@ -25,7 +25,7 @@ const isCompleted = ref(false);
     </button>
     <button
       class="text-white border-2 border-white"
-      @click="editTask(task.text)"
+      @click="$emit('edit', task.text)"
     >
       EDIT
     </button>
