@@ -3,14 +3,21 @@ import { ref, watch } from "vue";
 const id = ref(0);
 const newTask = ref("");
 const tasks = ref([]);
+
 const hasError = ref(false);
+
 function addTask() {
   tasks.value.push({ id: id.value++, text: newTask.value });
   newTask.value = "";
 }
-function deleteTask(task) {
-  tasks.value = tasks.value.filter((t) => t != task);
+function deleteTask(taskId) {
+  // tasks.value = tasks.value.filter((t) => t.id != taskId); //creates a second array, using more memory
+  tasks.value.splice(
+    tasks.value.findIndex((insideTask) => insideTask.id === taskId),
+    1
+  ); //searches the array until it finds an id equal to task.id
 }
+
 function validateAddtask() {
   if (newTask.value == "") {
     hasError.value = true;
@@ -25,6 +32,9 @@ watch(newTask, (value) => {
     hasError.value = false;
   }
 });
+function editTask(task) {
+  console.log(task);
+}
 </script>
 
 <template>
@@ -55,11 +65,24 @@ watch(newTask, (value) => {
           :key="task.id"
         >
           <input type="checkbox" v-model="task.done" />
-          <span class="flex-grow text-center" :class="{ done: task.done }">
+          <span
+            class="flex-grow text-center text-white"
+            contenteditable="false"
+            :class="{ done: task.done }"
+          >
             {{ task.text }}
           </span>
-          <button class="border-2 border-black ml-7" @click="deleteTask(task)">
+          <button
+            class="border-2 border-white ml-7 mr-2 text-white"
+            @click="deleteTask(task.id)"
+          >
             X
+          </button>
+          <button
+            class="text-white border-2 border-white"
+            @click="editTask(task.text)"
+          >
+            EDIT
           </button>
         </li>
       </div>
